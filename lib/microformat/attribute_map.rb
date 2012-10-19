@@ -1,7 +1,9 @@
+require "microformat/attribute"
+
 module Microformat
   class AttributeMap
     def initialize(&block)
-      yield(&block)
+      block.yield(self)
     end
     
     def attribute(name, options = {}, &block)

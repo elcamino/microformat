@@ -1,4 +1,6 @@
 require "nokogiri"
+require "microformat/collection"
+require "microformat/selectors"
 
 module Microformat
   class Parser
@@ -20,9 +22,9 @@ module Microformat
     end
     
     def parse(elements)
-      i = 0; while i < limit && elements.size > 0
+      i = 0; while i < limit && elements.size > 0 do
         collection << elements.delete_at(0)
-        i++
+        i += 1
       end
     end
 

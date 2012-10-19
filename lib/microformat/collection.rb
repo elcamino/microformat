@@ -1,3 +1,5 @@
+require "microformat/selectors"
+
 module Microformat
   class Collection < ::Array
     def <<(element)

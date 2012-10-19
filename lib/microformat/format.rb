@@ -1,3 +1,6 @@
+require "microformat/attribute_map"
+require "microformat/selectors"
+
 module Microformat
   class Format    
     def self.selector(selector = nil)

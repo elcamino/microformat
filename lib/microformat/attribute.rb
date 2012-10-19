@@ -3,7 +3,7 @@ module Microformat
     def initialize(name, options = {}, &block)
       @name = name
       @options = options
-      yield(&block) if block_given?
+      block.yield(self) if block_given?
     end
     
     def attribute(*args)

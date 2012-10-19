@@ -1,32 +1,34 @@
+require "microformat/format"
+
 module Microformat
   class Card < Format
     selector ".vcard"
     
-    attribute_map do
-      attribute(:fn, required: true)
-      attribute(:n) do
-        attribute(:"honorific-prefix")
-        attribute(:"given-name")
-        attribute(:"additional-name")
-        attribute(:"family-name")
-        attribute(:"honorific-suffix")
+    attribute_map do |map|
+      map.attribute(:fn, required: true)
+      map.attribute(:n) do |n|
+        n.attribute(:"honorific-prefix")
+        n.attribute(:"given-name")
+        n.attribute(:"additional-name")
+        n.attribute(:"family-name")
+        n.attribute(:"honorific-suffix")
       end
-      attribute(:nickname)
-      attribute(:org)
-      attribute(:photo, format: :url)
-      attribute(:url, format: :url)
-      attribute(:email, format: :email)
-      attribute(:tel, format: :tel)
-      attribute(:adr) do
-        attribute(:"street-address")
-        attribute(:locality)
-        attribute(:region)
-        attribute(:"postal-code")
-        attribute(:"country-name")
+      map.attribute(:nickname)
+      map.attribute(:org)
+      map.attribute(:photo, format: :url)
+      map.attribute(:url, format: :url)
+      map.attribute(:email, format: :email)
+      map.attribute(:tel, format: :tel)
+      map.attribute(:adr) do |adr|
+        adr.attribute(:"street-address")
+        adr.attribute(:locality)
+        adr.attribute(:region)
+        adr.attribute(:"postal-code")
+        adr.attribute(:"country-name")
       end
-      attribute(:"bday")
-      attribute(:"category")
-      attribute(:"note")
+      map.attribute(:"bday")
+      map.attribute(:"category")
+      map.attribute(:"note")
     end
   end
 end

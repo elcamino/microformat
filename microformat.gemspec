@@ -1,5 +1,8 @@
 # -*- encoding: utf-8 -*-
-require File.expand_path("../lib/microformat/version", __FILE__)
+lib = File.expand_path("../lib", __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+
+require "microformat/version"
 
 Gem::Specification.new do |s|
   s.authors       = ["Ryan Townsend"]
@@ -17,4 +20,7 @@ Gem::Specification.new do |s|
   
   # gems
   s.add_dependency "nokogiri"
+  s.add_development_dependency "rake"
+  s.add_development_dependency "rspec"
+  s.add_development_dependency "simplecov"
 end
