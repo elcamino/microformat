@@ -9,15 +9,21 @@ module Microformat
       @attribute_map = AttributeMap.new(&block) if block_given?
       @attribute_map
     end
-    
+
     def self.parse(document)
-      
+      new(document)
     end
     
-    attr_accessor :attributes
+    def initialize(document)
+      @document = document
+    end
     
-    def initialize(attributes = {})
-      self.attributes = attributes
+    def respond_to_missing?(name)
+      false
+    end
+
+    def method_missing(name)
+      super(name)
     end
     
     private
