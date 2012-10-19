@@ -65,6 +65,18 @@ describe Microformat::Selectors do
       element = Nokogiri::HTML(doc).css(".card").first
       expect(subject.class.class_matching(element)).to eq Hash
     end
+    
+    context "with no matching selectors" do
+      it "should raise an exception" do
+        doc = %Q(<html><body>
+          <div class="non"></div>
+        </body></html>)
+        element = Nokogiri::HTML(doc).css(".non").first
+        expect {
+          subject.class.class_matching(element)
+        }.to raise_error(RuntimeError)
+      end
+    end
   end
   
   describe "::filter" do
