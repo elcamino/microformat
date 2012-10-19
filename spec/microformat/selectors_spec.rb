@@ -50,6 +50,23 @@ describe Microformat::Selectors do
     end
   end
   
+  describe "::class_matching" do
+    let(:selectors) do
+      {
+        ".review" => Object,
+        ".card" => Hash
+      }
+    end
+    
+    it "should return the first class that matches the given selectors" do
+      doc = %Q(<html><body>
+        <div class="card review"></div>
+      </body></html>)
+      element = Nokogiri::HTML(doc).css(".card").first
+      expect(subject.class.class_matching(element)).to eq Hash
+    end
+  end
+  
   describe "::filter" do
     let(:selectors) do
       { ".review" => Object }
