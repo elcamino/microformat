@@ -14,4 +14,7 @@ Gem::Specification.new do |s|
   s.name          = "microformat"
   s.require_paths = ["lib"]
   s.version       = Microformat::VERSION
+  
+  # gems
+  s.add_dependency "nokogiri"
 end

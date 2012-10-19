@@ -1,5 +1,9 @@
 require "microformat/version"
+require "microformat/review"
+require "microformat/card"
 
 module Microformat
-  # Your code goes here...
+  def parse(*args)
+    Parser.parse(*args)
+  end
 end

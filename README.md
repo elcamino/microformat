@@ -44,18 +44,15 @@ Collections act as standard Ruby arrays, however they provide additional filteri
 ```ruby
 collection = Microformat.parse(element)
 # => Microformat::Collection (of all microformat objects)
-collection.filter(:reviews, :review_aggregates)
+collection.filter(Microformat::Review, Microformat::ReviewAggregate)
 # => Microformat::Collection (of only hreviews and hreview-aggregates)
-collection.reviews
-# => Microformat::Collection (of only hreviews)
-collection.cards
-# => Microformat::Collection (of only hcards)
 ```
 
 You can also improve performance by passing a set of formats to the initial parse:
 
 ```ruby
-Microformat.parse(element, filter: [:reviews, :cards])
+formats = [Microformat::Review, Microformat::Card]
+Microformat.parse(element, filter: formats)
 # => Microformat::Collection (of only hreviews and hcards)
 ```
 
