@@ -17,6 +17,8 @@ module Microformat
       new(document)
     end
     
+    attr_reader :document
+    
     def initialize(document)
       @document = document
     end
