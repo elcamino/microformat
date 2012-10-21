@@ -8,9 +8,9 @@ module Microformat
       block.yield(self) if block_given?
     end
     
-    def attribute(*args)
+    def attribute(*args, &block)
       @nested_attributes ||= []
-      @nested_attributes << Attribute.new(*args)
+      @nested_attributes << Attribute.new(*args, &block)
     end
   end
 end

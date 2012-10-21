@@ -9,7 +9,7 @@ describe Microformat::Attribute do
         attr.attribute(:one)
         attr.attribute(:two)
         attr.attribute(:three) do |three|
-          three.attr(:four)
+          three.attribute(:four)
         end
       end
       
