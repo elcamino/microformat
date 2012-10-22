@@ -2,7 +2,7 @@ require "microformat/attribute_map"
 require "microformat/selectors"
 
 module Microformat
-  class Format    
+  class Format
     def self.selector(selector = nil)
       define_selector(selector) if selector
       @selector
