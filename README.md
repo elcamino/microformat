@@ -2,6 +2,13 @@
 
 Reads Microformats from HTML documents
 
+[![Build Status][2]][1] [![Code Climate][3]][4]
+
+  [1]: http://travis-ci.org/platformq/microformat
+  [2]: https://secure.travis-ci.org/platformq/microformat.png?branch=master
+  [3]: https://codeclimate.com/badge.png
+  [4]: https://codeclimate.com/github/platformq/microformat
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -34,43 +41,9 @@ require "nokogiri"
 
 html = "<html>...</html>"
 doc = Nokogiri::HTML(html)
-element = doc.css(".hreview")
+element = doc.css("body")
 Microformat.parse(element)
 # => Microformat::Collection
-```
-
-Collections act as standard Ruby arrays, however they provide additional filtering methods:
-
-```ruby
-collection = Microformat.parse(element)
-# => Microformat::Collection (of all microformat objects)
-collection.filter(Microformat::Review, Microformat::ReviewAggregate)
-# => Microformat::Collection (of only hreviews and hreview-aggregates)
-```
-
-You can also improve performance by passing a set of formats to the initial parse:
-
-```ruby
-formats = [Microformat::Review, Microformat::Card]
-Microformat.parse(element, filter: formats)
-# => Microformat::Collection (of only hreviews and hcards)
-```
-
-You can specify a limit (should you only want the first or a few objects)
-
-```ruby
-Microformat.parse(element, limit: 3)
-# => Microformat::Collection (of max size 3)
-```
-
-You can also parse a Nokogiri element to return an object of the first found exact Microformat:
-
-```ruby
-html = "<html>...</html>"
-doc = Nokogiri::HTML(html)
-element = doc.css(".hcard")
-Microformat::Card.parse(element)
-# => Microformat::Card instance
 ```
 
 ## Contributing
