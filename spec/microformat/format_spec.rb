@@ -25,13 +25,13 @@ describe Microformat::Format do
     end
   end
   
-  describe "::attribute_map" do
+  describe "::attribute_definition" do
     describe "setting the value" do
       it "should accept a block and set the map correctly" do
-        map = Microformat::TestFormat.attribute_map do |attr|
+        map = Microformat::TestFormat.attribute_definition do |attr|
           attr.attribute :name
         end
-        expect(map.attributes.first.name).to eq :name
+        expect(map.attributes.values.first.name).to eq :name
       end
     end
   end

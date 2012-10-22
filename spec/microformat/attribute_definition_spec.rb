@@ -1,7 +1,7 @@
 require "spec_helper"
 
-describe Microformat::AttributeMap do
-  subject { Microformat::AttributeMap }
+describe Microformat::AttributeDefinition do
+  subject { Microformat::AttributeDefinition }
 
   describe "#initialize" do
     it "should accept a block of nested attributes" do

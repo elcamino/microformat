@@ -13,7 +13,7 @@ describe Microformat::Attribute do
         end
       end
       
-      expect(attribute.nested_attributes.size).to eq(3)
+      expect(attribute.attributes.size).to eq(3)
     end
     
     it "should set the name" do
