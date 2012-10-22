@@ -13,7 +13,7 @@ module Microformat
       new(doc, options).collection
     end
     
-    attr_reader :doc
+    attr_reader :doc, :options
     
     def initialize(doc, options)
       @doc = doc
@@ -22,8 +22,8 @@ module Microformat
     end
     
     def parse(elements)
-      i = 0; while i < limit && elements.size > 0 do
-        collection << elements.delete_at(0)
+      i = 0; while i < [limit, elements.size].min do
+        collection << elements[i]
         i += 1
       end
     end
@@ -33,7 +33,7 @@ module Microformat
     end
     
     def selectors
-      Selectors.filter(Array(options[:filter]))
+      @selectors ||= Selectors.filter(options[:filter])
     end
     
     def collection

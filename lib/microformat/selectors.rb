@@ -28,8 +28,12 @@ module Microformat
       end
     end
     
-    def self.filter(klasses)
-      instance.filter(klasses)
+    def self.filter(klasses = nil)
+      if klasses
+        instance.filter(Array(klasses))
+      else
+        instance.keys
+      end
     end
     
     def filter(klasses)
