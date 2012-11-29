@@ -30,12 +30,21 @@ module Microformat
     def read_value_from(document)
       Array(options[:attribute] || "text").each do |attr|
         if attr == "text"
-          return document.text
+          return cast(document.text, options[:cast])
         elsif document[attr]
-          return document[attr]
+          return cast(document[attr], options[:cast])
         end
       end
       return nil
+    end
+    
+    def cast(value, cast_to = nil)
+      case cast_to
+      when :integer then value.to_i
+      when :decimal then value.to_f
+      when :string then value.to_s
+      else value
+      end
     end
   end
 end
