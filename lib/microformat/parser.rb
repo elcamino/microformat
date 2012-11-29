@@ -42,16 +42,12 @@ module Microformat
     
     private
     def elements
-      # TODO: Update to perform loop removing elements from the document
-      # until none are left.
-      @elements ||= begin
-        elements = []
+      @elements ||= [].tap do |elements|
         while doc.css(selectors.join(", ")).length > 0
           node = doc.css(selectors.join(", ")).first
           node.remove
-          elements << node
+          elements.push node
         end
-        elements
       end
     end
   end
