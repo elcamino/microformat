@@ -30,6 +30,18 @@ describe Microformat::Parser do
       </body></html>)
     end
     
+    let(:nested_review_html) do
+      %Q(<html><body>
+        <div class="hreview">
+          <div class="summary">It's good</div>
+          <div class="reviewer">
+            <p class="fn">Dave</p>
+            <div class="hreview"></div>
+          </div>
+        </div>
+      </body></html>)
+    end
+    
     context "given a HTML string" do
       let(:doc) { html }
 
@@ -56,6 +68,32 @@ describe Microformat::Parser do
     
     context "given a HTML document with a hReview" do
       let(:doc) { Nokogiri::HTML(review_html) }
+    
+      it "should return a collection with one object" do
+        expect(subject.size).to eq 1
+      end
+      
+      describe "the returned Microformat object" do
+        subject do
+          Microformat::Parser.parse(doc).first
+        end
+        
+        it "should be a Microformat::Review" do
+          expect(subject).to be_kind_of(Microformat::Review)
+        end
+        
+        it "should return the summary" do
+          expect(subject.summary.value).to eq "It's good"
+        end
+        
+        it "should return the reviewer's full name" do
+          expect(subject.reviewer.fn.value).to eq "Dave"
+        end
+      end
+    end
+    
+    context "given a HTML document with nested microformats" do
+      let(:doc) { Nokogiri::HTML(nested_review_html) }
     
       it "should return a collection with one object" do
         expect(subject.size).to eq 1
