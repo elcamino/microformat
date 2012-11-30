@@ -30,9 +30,9 @@ module Microformat
     def read_value_from(document)
       Array(options[:attribute] || "text").each do |attr|
         if attr == "text"
-          return cast(document.text || options[:default], options[:cast])
+          return cast((document && document.text) || options[:default], options[:cast])
         elsif document[attr]
-          return cast(document[attr], options[:cast])
+          return cast(document && document[attr], options[:cast])
         end
       end
       return options[:default]
