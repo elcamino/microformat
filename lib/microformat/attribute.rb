@@ -40,9 +40,9 @@ module Microformat
     
     def cast(value, cast_to = nil)
       value && case cast_to
-        when :integer then value.to_i
-        when :decimal then value.to_f
-        when :string then value.to_s
+      when :integer then value.to_s.strip.to_i
+        when :decimal then value.to_s.strip.to_f
+        when :string then value.to_s.strip
         else value
       end
     end
