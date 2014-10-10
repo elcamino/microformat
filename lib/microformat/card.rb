@@ -19,12 +19,14 @@ module Microformat
       root.attribute(:url, cast: :url, attribute: "href")
       root.attribute(:email, cast: :email)
       root.attribute(:tel, cast: :tel)
+      root.attribute(:categoria)
       root.attribute(:adr) do |adr|
         adr.attribute(:"street-address")
         adr.attribute(:locality)
         adr.attribute(:region)
         adr.attribute(:"postal-code")
         adr.attribute(:"country-name")
+        adr.attribute(:district)
       end
       root.attribute(:"bday")
       root.attribute(:"category")
